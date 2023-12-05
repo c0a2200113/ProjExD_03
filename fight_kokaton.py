@@ -129,6 +129,9 @@ class Bomb:
 
 
 class Beam:
+    """
+    ビームに関するクラス
+    """
     def __init__(self, bird: Bird):
         self.img = pg.image.load(f"{MAIN_DIR}/fig/beam.png")
         self.rct = self.img.get_rect()
@@ -174,7 +177,6 @@ def main():
     bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]
     beam = None
     score = Score()
-
     clock = pg.time.Clock()
     tmr = 0
     while True:
@@ -184,9 +186,7 @@ def main():
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:  # スペースキーが押されたら
                 beam = Beam(bird)  # ビームインスタンスの生成
 
-        
-        screen.blit(bg_img, [0, 0])
-        
+        screen.blit(bg_img, [0, 0])        
         for bomb in bombs:
             if bird.rct.colliderect(bomb.rct):
                 # ゲームオーバー時に，こうかとん画像を切り替え，1秒間表示させる
